@@ -59,6 +59,7 @@ class Postmark
      */
     public function getContent($basePath, $post)
     {
+        $breadcrumbs = explode('/', $post);
         $postPath = $basePath .'/'. $post;
         $isDir = false;
         $index = [];
@@ -101,8 +102,9 @@ class Postmark
         }
 
         return [
-            'index' => $index,
-            'post'  => $post,
+            'breadcrumbs' => $breadcrumbs,
+            'index'       => $index,
+            'post'        => $post,
         ];
     }
 }
