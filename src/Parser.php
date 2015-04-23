@@ -1,6 +1,7 @@
 <?php namespace Fungku\Postmark;
 
 use Illuminate\Filesystem\Filesystem;
+use Parsedown;
 
 class Parser
 {
