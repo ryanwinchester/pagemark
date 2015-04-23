@@ -60,6 +60,7 @@ class Postmark
     public function getContent($basePath, $post)
     {
         $breadcrumbs = explode('/', $post);
+        $breadcrumbs = empty($breadcrumbs[0]) ? array() : $breadcrumbs;
         $postPath = $basePath .'/'. $post;
         $isDir = false;
         $index = [];
