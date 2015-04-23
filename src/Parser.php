@@ -14,8 +14,9 @@ class Parser
         $this->parser = $parser;
     }
 
-    public function parse($postPath)
+    public function parse($wikiPath, $post)
     {
+        $postPath = $wikiPath .'/'. $post;
         $isDir = false;
 
         if ($this->filesystem->isDirectory($postPath)) {
