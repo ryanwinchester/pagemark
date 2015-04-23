@@ -1,0 +1,22 @@
+{
+    "name": "fungku/postmark",
+    "description": "Parse markdown for a blog or wiki",
+    "license": "apache-2",
+    "authors": [
+        {
+            "name": "fungku",
+            "email": "fungku@gmail.com"
+        }
+    ],
+    "require": {
+        "erusev/parsedown": "~1.5",
+        "illuminate/filesystem": "~5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fungku\\Postmark\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}
