@@ -18,6 +18,7 @@ class Parser
     {
         $postPath = $wikiPath .'/'. $post;
         $isDir = false;
+        $index = [];
 
         if ($this->filesystem->isDirectory($postPath)) {
             $isDir = true;
