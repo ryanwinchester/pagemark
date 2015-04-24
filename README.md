@@ -47,6 +47,13 @@ $content = [
     'post'        => '<p>Some text from My-Post.md</p>'
 ];
 ```
+Explanation:
+
+1. `$breadcrumbs` is an array of breadcrumbs.
+2. `$index` is available if you have navigated to a directory, or an empty array otherwise
+    - `$index['subcategories']` is an array of subdirectories in your current directory
+    - `$index['files']` is an array of files in your current directory
+3. `$post` is a string of your parsed markdown content
 
 ## Using a different parser.
 
