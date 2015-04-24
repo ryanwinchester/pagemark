@@ -44,9 +44,9 @@ class Postmark
      */
     public static function parse($basePath, $post)
     {
-        $parser = static::create();
+        $postmark = static::create();
 
-        return $parser->parse($basePath, $post);
+        return $postmark->getContent($basePath, $post);
     }
 
     /**
