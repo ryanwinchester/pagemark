@@ -128,7 +128,7 @@ class Postmark
     private function deslug($slugged)
     {
         if (is_array($slugged)) {
-            return array_map($this->deslug, $slugged);
+            return array_map('static::deslug', $slugged);
         }
 
         return str_replace(['-', '_'], ' ', $slugged);
