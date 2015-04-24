@@ -44,9 +44,9 @@ class Postmark
      */
     public static function parse($basePath, $post)
     {
-        $parser = static::create();
+        $postmark = static::create();
 
-        return $parser->parse($basePath, $post);
+        return $postmark->getContent($basePath, $post);
     }
 
     /**
@@ -72,7 +72,7 @@ class Postmark
             $postPath .= '/index';
         }
 
-        $file = $postPath .'.md';
+        $file = $postPath.'.md';
         if ($this->filesystem->exists($file)) {
             $post = $this->parser->parse($this->filesystem->get($file));
         } else {
