@@ -59,8 +59,8 @@ class Postmark
      */
     public function getContent($basePath, $post)
     {
-        $breadcrumbs = explode('/', $post);
-        $breadcrumbs = empty($breadcrumbs[0]) ? array() : $breadcrumbs;
+        $breadcrumbs = $this->makeBreadcrumbsFromPost($post);
+
         $postPath = $basePath .'/'. $post;
         $isDir = false;
         $index = [];
@@ -107,5 +107,30 @@ class Postmark
             'index'       => $index,
             'post'        => $post,
         ];
+    }
+
+    /**
+     * @param string $post
+     * @return array
+     */
+    private function makeBreadcrumbsFromPost($post)
+    {
+        $breadcrumbs = explode('/', $post);
+        $breadcrumbs = empty($breadcrumbs[0]) ? array() : $breadcrumbs;
+
+        return $this->deslug($breadcrumbs);
+    }
+
+    /**
+     * @param array|string $slugged
+     * @return array|string
+     */
+    private function deslug($slugged)
+    {
+        if (is_array($slugged)) {
+            return array_map($this->deslug, $slugged);
+        }
+
+        return str_replace(['-', '_'], ' ', $slugged);
     }
 }
