@@ -2,6 +2,12 @@
 
 ## Parse markdown for blogs and wikis
 
+[![Version](https://img.shields.io/packagist/v/fungku/postmark.svg?style=flat-square)](https://packagist.org/packages/fungku/postmark)
+ [![Total Downloads](https://img.shields.io/packagist/dt/fungku/postmark.svg?style=flat-square)](https://packagist.org/packages/fungku/postmark)
+ [![License](https://img.shields.io/packagist/l/fungku/postmark.svg?style=flat-square)](https://packagist.org/packages/fungku/postmark)
+ [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/fungku/postmark.svg?style=flat-square)](https://scrutinizer-ci.com/g/fungku/postmark/?branch=master)
+ [![Build Status](https://img.shields.io/travis/fungku/postmark.svg?style=flat-square)](https://travis-ci.org/fungku/postmark)
+
 There are multiple ways to get the content.
 
 ```php

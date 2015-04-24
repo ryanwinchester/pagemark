@@ -61,7 +61,7 @@ class Postmark
     {
         $breadcrumbs = explode('/', $post);
         $breadcrumbs = empty($breadcrumbs[0]) ? array() : $breadcrumbs;
-        $postPath = $basePath .'/'. $post;
+        $postPath = $basePath.'/'.$post;
         $isDir = false;
         $index = [];
 
@@ -72,7 +72,7 @@ class Postmark
             $postPath .= '/index';
         }
 
-        $file = $postPath .'.md';
+        $file = $postPath.'.md';
         if ($this->filesystem->exists($file)) {
             $post = $this->parser->parse($this->filesystem->get($file));
         } else {
