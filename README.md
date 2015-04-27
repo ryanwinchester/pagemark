@@ -49,7 +49,20 @@ $content = $postmark->getContent($basePath, $post);
 
 ```php
 $content = [
-    'breadcrumbs' => ['Category', 'Subcategory', 'My-Post'],
+    'breadcrumbs' => [
+        [
+            'href' => 'Category',
+            'name' => 'Category'
+        ],
+        [
+            'href' => 'Category/Subcategory',
+            'name' => 'Subcategory'
+        ],
+        [
+            'href' => 'Category/Subcategory/My-Post',
+            'name' => 'My Post'
+        ],
+    ],
     'index'       => ['subcategories' => [], 'files' => []],
     'post'        => '<p>Some text from My-Post.md</p>'
 ];

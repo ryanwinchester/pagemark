@@ -93,7 +93,7 @@ class Postmark
                 $name = array_pop($paths);
                 $index['subcategories'][$i] = [
                     'href' => $item,
-                    'name' => $this->deslug($name),
+                    'name' => $this->deslugify($name),
                 ];
             }
             foreach ($index['files'] as $i => $item) {
@@ -103,7 +103,7 @@ class Postmark
                 $name = array_pop($paths);
                 $index['files'][$i] = [
                     'href' => $item,
-                    'name' => $this->deslug($name),
+                    'name' => $this->deslugify($name),
                 ];
                 if ($index['files'][$i]['name'] === 'index') {
                     unset($index['files'][$i]);
@@ -126,10 +126,31 @@ class Postmark
      */
     private function makeBreadcrumbsFromPost($post)
     {
-        $breadcrumbs = explode('/', $post);
-        $breadcrumbs = empty($breadcrumbs[0]) ? array() : $breadcrumbs;
+        $crumbs = explode('/', $post);
+        $crumbs = empty($crumbs[0]) ? [] : $crumbs;
 
-        return $this->deslug($breadcrumbs);
+        $breadcrumbs = [];
+
+        foreach ($crumbs as $i => $crumb) {
+            $breadcrumbs[$i] = [
+                'href' => $this->slugify(implode('/', array_slice($crumbs, 0, $i+1))),
+                'name' => $this->deslugify($crumbs[$i]),
+            ];
+        }
+
+        return $breadcrumbs;
+    }
+
+    /**
+     * Take a string with spaces and convert the spaces to the specified separator.
+     *
+     * @param string $string
+     * @param string $separator
+     * @return mixed
+     */
+    private function slugify($string, $separator = '-')
+    {
+        return str_replace(' ', $separator, $string);
     }
 
     /**
@@ -138,10 +159,10 @@ class Postmark
      * @param array|string $slugged
      * @return array|string
      */
-    private function deslug($slugged)
+    private function deslugify($slugged)
     {
         if (is_array($slugged)) {
-            return array_map('static::deslug', $slugged);
+            return array_map('static::deslugify', $slugged);
         }
 
         return str_replace(['-', '_'], ' ', $slugged);

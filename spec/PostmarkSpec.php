@@ -40,7 +40,11 @@ class PostmarkSpec extends ObjectBehavior
     function it_gets_content_for_file(Filesystem $filesystem, Parser $parser)
     {
         $content = [
-            'breadcrumbs' => ['My', 'Post', 'File'],
+            'breadcrumbs' => [
+                ['href' => 'My',           'name' => 'My'],
+                ['href' => 'My/Post',      'name' => 'Post'],
+                ['href' => 'My/Post/File', 'name' => 'File']
+            ],
             'index'       => [],
             'post'        => require "resources/html.php",
         ];
@@ -62,7 +66,11 @@ class PostmarkSpec extends ObjectBehavior
     function it_gets_content_for_directory_with_index_only(Filesystem $filesystem, Parser $parser)
     {
         $content = [
-            'breadcrumbs' => ['My', 'Post', 'File'],
+            'breadcrumbs' => [
+                ['href' => 'My',           'name' => 'My'],
+                ['href' => 'My/Post',      'name' => 'Post'],
+                ['href' => 'My/Post/File', 'name' => 'File'],
+            ],
             'index'       => ['subcategories' => [], 'files' => []],
             'post'        => require "resources/html.php",
         ];
@@ -88,7 +96,11 @@ class PostmarkSpec extends ObjectBehavior
     function it_gets_content_for_directory_with_subcategories_and_files(Filesystem $filesystem, Parser $parser)
     {
         $content = [
-            'breadcrumbs' => ['My', 'Post', 'File'],
+            'breadcrumbs' => [
+                ['href' => 'My',           'name' => 'My'],
+                ['href' => 'My/Post',      'name' => 'Post'],
+                ['href' => 'My/Post/File', 'name' => 'File'],
+            ],
             'index' => [
                 'subcategories' => [
                     ['href' => 'Some-Subcategory', 'name' => 'Some Subcategory'],
