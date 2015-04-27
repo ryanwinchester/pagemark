@@ -9,21 +9,18 @@ use Prophecy\Argument;
 
 class PostmarkSpec extends ObjectBehavior
 {
-    private $input;
+    private $basePath = '/path/to/wiki';
+    private $post = 'My/Post/File';
+
+    private $postPath;
+    private $markdown;
+    private $html;
 
     function __construct()
     {
-        $markdown = require "resources/markdown.php";
-
-        $this->input = [
-            'basePath'  => 'path/to/wiki',
-            'dirPath'   => 'path/to/wiki/My/Post/File',
-            'indexPath' => 'path/to/wiki/My/Post/File/index.md',
-            'filePath'  => 'path/to/wiki/My/Post/File.md',
-            'post'      => 'My/Post/File',
-            'file'      => 'My/Post/File.md',
-            'markdown'  => $markdown,
-        ];
+        $this->postPath = $this->basePath .'/'. $this->post;
+        $this->markdown = require "resources/markdown.php";
+        $this->html = require "resources/html.php";
     }
 
     function let(Filesystem $filesystem, Parser $parser)
@@ -39,6 +36,8 @@ class PostmarkSpec extends ObjectBehavior
 
     function it_gets_content_for_file(Filesystem $filesystem, Parser $parser)
     {
+        $filePath = $this->postPath .'.md';
+        
         $content = [
             'title' => 'File',
             'breadcrumbs' => [
@@ -46,26 +45,28 @@ class PostmarkSpec extends ObjectBehavior
                 ['href' => '/My/Post',      'name' => 'Post'],
                 ['href' => '/My/Post/File', 'name' => 'File']
             ],
-            'index'       => [],
-            'post'        => require "resources/html.php",
+            'index' => [],
+            'post'  => $this->html,
         ];
 
-        $filesystem->isDirectory($this->input['dirPath'])
+        $filesystem->isDirectory($this->postPath)
             ->willReturn(false);
-        $filesystem->exists($this->input['filePath'])
+        $filesystem->exists($filePath)
             ->willReturn(true);
-        $filesystem->get($this->input['filePath'])
-            ->willReturn($this->input['markdown']);
+        $filesystem->get($filePath)
+            ->willReturn($this->markdown);
 
-        $parser->parse($this->input['markdown'])
+        $parser->parse($this->markdown)
             ->willReturn($content['post']);
 
-        $this->getContent($this->input['basePath'], $this->input['post'])
+        $this->getContent($this->basePath, $this->post)
             ->shouldReturn($content);
     }
 
     function it_gets_content_for_directory_with_index_only(Filesystem $filesystem, Parser $parser)
     {
+        $filePath = $this->postPath .'/index.md';
+
         $content = [
             'title' => 'File',
             'breadcrumbs' => [
@@ -73,30 +74,32 @@ class PostmarkSpec extends ObjectBehavior
                 ['href' => '/My/Post',      'name' => 'Post'],
                 ['href' => '/My/Post/File', 'name' => 'File'],
             ],
-            'index'       => ['subcategories' => [], 'files' => []],
-            'post'        => require "resources/html.php",
+            'index' => ['subcategories' => [], 'files' => []],
+            'post'  => $this->html,
         ];
 
-        $filesystem->isDirectory($this->input['dirPath'])
+        $filesystem->isDirectory($this->postPath)
             ->willReturn(true);
-        $filesystem->exists($this->input['indexPath'])
+        $filesystem->exists($filePath)
             ->willReturn(true);
-        $filesystem->get($this->input['indexPath'])
-            ->willReturn($this->input['markdown']);
-        $filesystem->directories($this->input['dirPath'])
+        $filesystem->get($filePath)
+            ->willReturn($this->markdown);
+        $filesystem->directories($this->postPath)
             ->willReturn([]);
-        $filesystem->files($this->input['dirPath'])
+        $filesystem->files($this->postPath)
             ->willReturn([]);
 
-        $parser->parse($this->input['markdown'])
+        $parser->parse($this->markdown)
             ->willReturn($content['post']);
 
-        $this->getContent($this->input['basePath'], $this->input['post'])
+        $this->getContent($this->basePath, $this->post)
             ->shouldReturn($content);
     }
 
     function it_gets_content_for_directory_with_subcategories_and_files(Filesystem $filesystem, Parser $parser)
     {
+        $filePath = $this->postPath .'/index.md';
+
         $content = [
             'title' => 'File',
             'breadcrumbs' => [
@@ -112,24 +115,24 @@ class PostmarkSpec extends ObjectBehavior
                     ['href' => '/Another-Post', 'name' => 'Another Post'],
                 ],
             ],
-            'post' => require "resources/html.php",
+            'post' => $this->html,
         ];
 
-        $filesystem->isDirectory($this->input['dirPath'])
+        $filesystem->isDirectory($this->postPath)
             ->willReturn(true);
-        $filesystem->exists($this->input['indexPath'])
+        $filesystem->exists($filePath)
             ->willReturn(true);
-        $filesystem->get($this->input['indexPath'])
-            ->willReturn($this->input['markdown']);
-        $filesystem->directories($this->input['dirPath'])
-            ->willReturn(['Some-Subcategory']);
-        $filesystem->files($this->input['dirPath'])
+        $filesystem->get($filePath)
+            ->willReturn($this->markdown);
+        $filesystem->directories($this->postPath)
+            ->willReturn(['/Some-Subcategory']);
+        $filesystem->files($this->postPath)
             ->willReturn(['Another-Post.md']);
 
-        $parser->parse($this->input['markdown'])
+        $parser->parse($this->markdown)
             ->willReturn($content['post']);
 
-        $this->getContent($this->input['basePath'], $this->input['post'])
+        $this->getContent($this->basePath, $this->post)
             ->shouldReturn($content);
     }
 }

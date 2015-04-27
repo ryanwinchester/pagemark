@@ -93,7 +93,7 @@ class Postmark
                 $paths = explode('/', $item);
                 $name = array_pop($paths);
                 $index['subcategories'][$i] = [
-                    'href' => '/'.$item,
+                    'href' => $item,
                     'name' => $this->deslugify($name),
                 ];
             }
