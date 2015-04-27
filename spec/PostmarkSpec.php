@@ -15,7 +15,7 @@ class PostmarkSpec extends ObjectBehavior
     {
         $markdown = require "resources/markdown.php";
 
-        $this->input = array(
+        $this->input = [
             'basePath'  => 'path/to/wiki',
             'dirPath'   => 'path/to/wiki/My/Post/File',
             'indexPath' => 'path/to/wiki/My/Post/File/index.md',
@@ -23,7 +23,7 @@ class PostmarkSpec extends ObjectBehavior
             'post'      => 'My/Post/File',
             'file'      => 'My/Post/File.md',
             'markdown'  => $markdown,
-        );
+        ];
     }
 
     function let(Filesystem $filesystem, Parser $parser)
@@ -40,8 +40,8 @@ class PostmarkSpec extends ObjectBehavior
     function it_gets_content_for_file(Filesystem $filesystem, Parser $parser)
     {
         $content = [
-            'breadcrumbs' => array('My', 'Post', 'File'),
-            'index'       => array(),
+            'breadcrumbs' => ['My', 'Post', 'File'],
+            'index'       => [],
             'post'        => require "resources/html.php",
         ];
 
@@ -62,8 +62,8 @@ class PostmarkSpec extends ObjectBehavior
     function it_gets_content_for_directory_with_index_only(Filesystem $filesystem, Parser $parser)
     {
         $content = [
-            'breadcrumbs' => array('My', 'Post', 'File'),
-            'index'       => array(),
+            'breadcrumbs' => ['My', 'Post', 'File'],
+            'index'       => [],
             'post'        => require "resources/html.php",
         ];
 
@@ -74,9 +74,9 @@ class PostmarkSpec extends ObjectBehavior
         $filesystem->get($this->input['indexPath'])
             ->willReturn($this->input['markdown']);
         $filesystem->directories($this->input['dirPath'])
-            ->willReturn(array());
+            ->willReturn([]);
         $filesystem->files($this->input['dirPath'])
-            ->willReturn(array());
+            ->willReturn([]);
 
         $parser->parse($this->input['markdown'])
             ->willReturn($content['post']);
@@ -88,15 +88,15 @@ class PostmarkSpec extends ObjectBehavior
     function it_gets_content_for_directory_with_subcategories_and_files(Filesystem $filesystem, Parser $parser)
     {
         $content = [
-            'breadcrumbs' => array('My', 'Post', 'File'),
-            'index' => array(
-                'subcategories' => array(
-                    array('href' => 'Some-Subcategory', 'name' => 'Some Subcategory'),
-                ),
-                'files' => array(
-                    array('href' => 'Another-Post', 'name' => 'Another Post'),
-                ),
-            ),
+            'breadcrumbs' => ['My', 'Post', 'File'],
+            'index' => [
+                'subcategories' => [
+                    ['href' => 'Some-Subcategory', 'name' => 'Some Subcategory'],
+                ],
+                'files' => [
+                    ['href' => 'Another-Post', 'name' => 'Another Post'],
+                ],
+            ],
             'post' => require "resources/html.php",
         ];
 
@@ -107,9 +107,9 @@ class PostmarkSpec extends ObjectBehavior
         $filesystem->get($this->input['indexPath'])
             ->willReturn($this->input['markdown']);
         $filesystem->directories($this->input['dirPath'])
-            ->willReturn(array('Some-Subcategory'));
+            ->willReturn(['Some-Subcategory']);
         $filesystem->files($this->input['dirPath'])
-            ->willReturn(array('Another-Post.md'));
+            ->willReturn(['Another-Post.md']);
 
         $parser->parse($this->input['markdown'])
             ->willReturn($content['post']);

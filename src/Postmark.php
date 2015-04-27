@@ -70,7 +70,7 @@ class Postmark
 
         $postPath = $basePath .'/'. $post;
         $isDir = false;
-        $index = array();
+        $index = [];
 
         if ($this->filesystem->isDirectory($postPath)) {
             $isDir = true;
@@ -91,31 +91,31 @@ class Postmark
                 $item = str_replace($basePath, '', $item);
                 $paths = explode('/', $item);
                 $name = array_pop($paths);
-                $index['subcategories'][$i] = array(
+                $index['subcategories'][$i] = [
                     'href' => $item,
                     'name' => $this->deslug($name),
-                );
+                ];
             }
             foreach ($files as $i => $item) {
                 $item = str_replace($basePath, '', $item);
                 $item = str_replace('.md', '', $item);
                 $paths = explode('/', $item);
                 $name = array_pop($paths);
-                $index['files'][$i] = array(
+                $index['files'][$i] = [
                     'href' => $item,
                     'name' => $this->deslug($name),
-                );
+                ];
                 if ($index['files'][$i]['name'] === 'index') {
                     unset($files[$i]);
                 }
             }
         }
 
-        return array(
+        return [
             'breadcrumbs' => $breadcrumbs,
             'index'       => $index,
             'post'        => $post,
-        );
+        ];
     }
 
     /**
@@ -144,6 +144,6 @@ class Postmark
             return array_map('static::deslug', $slugged);
         }
 
-        return str_replace(array('-', '_'), ' ', $slugged);
+        return str_replace(['-', '_'], ' ', $slugged);
     }
 }
