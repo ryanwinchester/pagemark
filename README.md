@@ -49,6 +49,7 @@ $content = $postmark->getContent($basePath, $post);
 
 ```php
 $content = [
+    'title' => 'File',
     'breadcrumbs' => [
         [
             'href' => 'Category',
@@ -69,11 +70,12 @@ $content = [
 ```
 Explanation:
 
-1. `$breadcrumbs` is an array of breadcrumbs.
-2. `$index` is available if you have navigated to a directory, or an empty array otherwise
+1. `$title` - The title of the post or category taken from the file or directory name.
+2. `$breadcrumbs` is an array of breadcrumbs.
+3. `$index` is available if you have navigated to a directory, or an empty array otherwise
     - `$index['subcategories']` is an array of subdirectories in your current directory
     - `$index['files']` is an array of files in your current directory
-3. `$post` is a string of your parsed markdown content
+4. `$post` is a string of your parsed markdown content
 
 ## Using a different parser.
 

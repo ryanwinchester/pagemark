@@ -40,6 +40,7 @@ class PostmarkSpec extends ObjectBehavior
     function it_gets_content_for_file(Filesystem $filesystem, Parser $parser)
     {
         $content = [
+            'title' => 'File',
             'breadcrumbs' => [
                 ['href' => 'My',           'name' => 'My'],
                 ['href' => 'My/Post',      'name' => 'Post'],
@@ -66,6 +67,7 @@ class PostmarkSpec extends ObjectBehavior
     function it_gets_content_for_directory_with_index_only(Filesystem $filesystem, Parser $parser)
     {
         $content = [
+            'title' => 'File',
             'breadcrumbs' => [
                 ['href' => 'My',           'name' => 'My'],
                 ['href' => 'My/Post',      'name' => 'Post'],
@@ -96,6 +98,7 @@ class PostmarkSpec extends ObjectBehavior
     function it_gets_content_for_directory_with_subcategories_and_files(Filesystem $filesystem, Parser $parser)
     {
         $content = [
+            'title' => 'File',
             'breadcrumbs' => [
                 ['href' => 'My',           'name' => 'My'],
                 ['href' => 'My/Post',      'name' => 'Post'],

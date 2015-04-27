@@ -67,6 +67,7 @@ class Postmark
     public function getContent($basePath, $post)
     {
         $breadcrumbs = $this->makeBreadcrumbsFromPost($post);
+        $title = $this->makeTitleFromBreadcrumbs($breadcrumbs);
 
         $postPath = $basePath .'/'. $post;
         $isDir = false;
@@ -112,10 +113,24 @@ class Postmark
         }
 
         return [
+            'title'       => $title,
             'breadcrumbs' => $breadcrumbs,
             'index'       => $index,
             'post'        => $post,
         ];
+    }
+
+    /**
+     * Get the Post or Category title from the breadcrumbs array.
+     *
+     * @param $breadcrumbs
+     * @return mixed
+     */
+    private function makeTitleFromBreadcrumbs($breadcrumbs)
+    {
+        $lastCrumb = current(array_slice($breadcrumbs, -1));
+
+        return $lastCrumb['name'];
     }
 
     /**
