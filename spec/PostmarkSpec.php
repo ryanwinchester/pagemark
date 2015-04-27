@@ -81,7 +81,13 @@ class PostmarkSpec extends ObjectBehavior
     {
         $filePath = $this->postPath .'/index.md';
 
-        $this->setupFilesystemMethods($filesystem, $filePath, true, [$this->postPath.'/Some-Subcategory'], [$this->postPath.'/Another-Post.md', $this->postPath . '/Test-Post.md']);
+        $this->setupFilesystemMethods(
+            $filesystem,
+            $filePath,
+            true, // is directory
+            [$this->postPath.'/Some-Subcategory'], // subdirectory list
+            [$this->postPath.'/Another-Post.md', $this->postPath . '/Test-Post.md'] // file list
+        );
 
         $parser->parse($this->markdown)
             ->willReturn($this->html);

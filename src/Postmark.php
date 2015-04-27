@@ -103,7 +103,7 @@ class Postmark
                 $paths = explode('/', $item);
                 $name = array_pop($paths);
                 $index['files'][$i] = [
-                    'href' => $item,
+                    'href' => str_replace('//', '/', $item),
                     'name' => $this->deslugify($name),
                 ];
                 if ($index['files'][$i]['name'] === 'index') {
