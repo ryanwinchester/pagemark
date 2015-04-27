@@ -74,8 +74,8 @@ class Postmark
 
         if ($this->filesystem->isDirectory($postPath)) {
             $isDir = true;
-            $index['subcategories'] = $this->filesystem->directories($postPath);
-            $index['files'] = $this->filesystem->files($postPath);
+            $subcategories = $this->filesystem->directories($postPath);
+            $files = $this->filesystem->files($postPath);
             $postPath .= '/index';
         }
 
@@ -87,7 +87,7 @@ class Postmark
         }
 
         if ($isDir) {
-            foreach ($index['subcategories'] as $i => $item) {
+            foreach ($subcategories as $i => $item) {
                 $item = str_replace($basePath, '', $item);
                 $paths = explode('/', $item);
                 $name = array_pop($paths);
@@ -96,7 +96,7 @@ class Postmark
                     'name' => $this->deslug($name),
                 ];
             }
-            foreach ($index['files'] as $i => $item) {
+            foreach ($files as $i => $item) {
                 $item = str_replace($basePath, '', $item);
                 $item = str_replace('.md', '', $item);
                 $paths = explode('/', $item);
@@ -106,7 +106,7 @@ class Postmark
                     'name' => $this->deslug($name),
                 ];
                 if ($index['files'][$i]['name'] === 'index') {
-                    unset($index['files'][$i]);
+                    unset($files[$i]);
                 }
             }
         }
