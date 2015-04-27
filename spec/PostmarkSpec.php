@@ -42,9 +42,9 @@ class PostmarkSpec extends ObjectBehavior
         $content = [
             'title' => 'File',
             'breadcrumbs' => [
-                ['href' => 'My',           'name' => 'My'],
-                ['href' => 'My/Post',      'name' => 'Post'],
-                ['href' => 'My/Post/File', 'name' => 'File']
+                ['href' => '/My',           'name' => 'My'],
+                ['href' => '/My/Post',      'name' => 'Post'],
+                ['href' => '/My/Post/File', 'name' => 'File']
             ],
             'index'       => [],
             'post'        => require "resources/html.php",
@@ -69,9 +69,9 @@ class PostmarkSpec extends ObjectBehavior
         $content = [
             'title' => 'File',
             'breadcrumbs' => [
-                ['href' => 'My',           'name' => 'My'],
-                ['href' => 'My/Post',      'name' => 'Post'],
-                ['href' => 'My/Post/File', 'name' => 'File'],
+                ['href' => '/My',           'name' => 'My'],
+                ['href' => '/My/Post',      'name' => 'Post'],
+                ['href' => '/My/Post/File', 'name' => 'File'],
             ],
             'index'       => ['subcategories' => [], 'files' => []],
             'post'        => require "resources/html.php",
@@ -100,16 +100,16 @@ class PostmarkSpec extends ObjectBehavior
         $content = [
             'title' => 'File',
             'breadcrumbs' => [
-                ['href' => 'My',           'name' => 'My'],
-                ['href' => 'My/Post',      'name' => 'Post'],
-                ['href' => 'My/Post/File', 'name' => 'File'],
+                ['href' => '/My',           'name' => 'My'],
+                ['href' => '/My/Post',      'name' => 'Post'],
+                ['href' => '/My/Post/File', 'name' => 'File'],
             ],
             'index' => [
                 'subcategories' => [
-                    ['href' => 'Some-Subcategory', 'name' => 'Some Subcategory'],
+                    ['href' => '/Some-Subcategory', 'name' => 'Some Subcategory'],
                 ],
                 'files' => [
-                    ['href' => 'Another-Post', 'name' => 'Another Post'],
+                    ['href' => '/Another-Post', 'name' => 'Another Post'],
                 ],
             ],
             'post' => require "resources/html.php",
