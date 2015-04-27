@@ -63,7 +63,7 @@ class PostmarkSpec extends ObjectBehavior
     {
         $content = [
             'breadcrumbs' => ['My', 'Post', 'File'],
-            'index'       => [],
+            'index'       => ['subcategories' => [], 'files' => []],
             'post'        => require "resources/html.php",
         ];
 
