@@ -93,7 +93,7 @@ class Postmark
                 $paths = explode('/', $item);
                 $name = array_pop($paths);
                 $index['subcategories'][$i] = [
-                    'href' => $item,
+                    'href' => '/'.$item,
                     'name' => $this->deslugify($name),
                 ];
             }
@@ -103,7 +103,7 @@ class Postmark
                 $paths = explode('/', $item);
                 $name = array_pop($paths);
                 $index['files'][$i] = [
-                    'href' => $item,
+                    'href' => '/'.$item,
                     'name' => $this->deslugify($name),
                 ];
                 if ($index['files'][$i]['name'] === 'index') {
@@ -148,7 +148,7 @@ class Postmark
 
         foreach ($crumbs as $i => $crumb) {
             $breadcrumbs[$i] = [
-                'href' => $this->slugify(implode('/', array_slice($crumbs, 0, $i+1))),
+                'href' => '/'.$this->slugify(implode('/', array_slice($crumbs, 0, $i+1))),
                 'name' => $this->deslugify($crumbs[$i]),
             ];
         }

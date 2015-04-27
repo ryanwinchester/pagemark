@@ -52,15 +52,15 @@ $content = [
     'title' => 'File',
     'breadcrumbs' => [
         [
-            'href' => 'Category',
+            'href' => '/Category',
             'name' => 'Category'
         ],
         [
-            'href' => 'Category/Subcategory',
+            'href' => '/Category/Subcategory',
             'name' => 'Subcategory'
         ],
         [
-            'href' => 'Category/Subcategory/My-Post',
+            'href' => '/Category/Subcategory/My-Post',
             'name' => 'My Post'
         ],
     ],
