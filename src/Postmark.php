@@ -27,6 +27,8 @@ class Postmark
     }
 
     /**
+     * Return a new postmark instance.
+     *
      * @param Parseable $parser
      * @return static
      */
@@ -38,6 +40,9 @@ class Postmark
     }
 
     /**
+     * Parse a post into an array of content elements
+     * without needing to instantiate the class first.
+     *
      * @param string $basePath
      * @param string $post
      * @return mixed
@@ -50,6 +55,8 @@ class Postmark
     }
 
     /**
+     * Parse a post into an array of content elements.
+     *
      * TODO: Refactor
      *
      * @param string $basePath
@@ -83,18 +90,20 @@ class Postmark
             foreach ($index['subcategories'] as $i => $item) {
                 $item = str_replace($basePath, '', $item);
                 $paths = explode('/', $item);
+                $name = array_pop($paths);
                 $index['subcategories'][$i] = [
                     'href' => $item,
-                    'name' => array_pop($paths),
+                    'name' => $this->deslug($name),
                 ];
             }
             foreach ($index['files'] as $i => $item) {
                 $item = str_replace($basePath, '', $item);
                 $item = str_replace('.md', '', $item);
                 $paths = explode('/', $item);
+                $name = array_pop($paths);
                 $index['files'][$i] = [
                     'href' => $item,
-                    'name' => array_pop($paths),
+                    'name' => $this->deslug($name),
                 ];
                 if ($index['files'][$i]['name'] === 'index') {
                     unset($index['files'][$i]);
@@ -110,6 +119,8 @@ class Postmark
     }
 
     /**
+     * Make an array of breadcrumb items.
+     *
      * @param string $post
      * @return array
      */
@@ -122,6 +133,8 @@ class Postmark
     }
 
     /**
+     * Take a string with dash or underscore word separators and convert the to spaces.
+     *
      * @param array|string $slugged
      * @return array|string
      */
