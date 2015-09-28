@@ -1,4 +1,6 @@
-<?php namespace Fungku\Postmark\Contracts;
+<?php
+
+namespace Pagemark\Contracts;
 
 interface Parseable
 {

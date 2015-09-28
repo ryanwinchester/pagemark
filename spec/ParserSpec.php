@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Fungku\Postmark;
+namespace spec\Pagemark;
 
 use Parsedown;
 use PhpSpec\ObjectBehavior;
@@ -15,6 +15,6 @@ class ParserSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Fungku\Postmark\Parser');
+        $this->shouldHaveType('Pagemark\Parser');
     }
 }

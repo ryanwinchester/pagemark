@@ -1,6 +1,8 @@
-<?php namespace Fungku\Postmark;
+<?php
 
-use Fungku\Postmark\Contracts\Parseable;
+namespace Pagemark;
+
+use Pagemark\Contracts\Parseable;
 use Parsedown;
 
 class Parser implements Parseable

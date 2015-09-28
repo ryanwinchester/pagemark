@@ -1,24 +1,24 @@
 {
-    "name": "fungku/postmark",
+    "name": "ryanwinchester/pagemark",
     "description": "Parse markdown for a blog or wiki",
     "license": "apache-2",
     "authors": [
         {
-            "name": "fungku",
+            "name": "Ryan Winchester",
             "email": "fungku@gmail.com"
         }
     ],
     "require": {
-        "php": ">=5.4.0",
         "erusev/parsedown": "~1.5",
-        "illuminate/filesystem": "~5.0"
+        "illuminate/filesystem": "~5.0",
+        "php": ">=5.4.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "~2.0"
+        "phpspec/phpspec": "~2.1"
     },
     "autoload": {
         "psr-4": {
-            "Fungku\\Postmark\\": "src/"
+            "Pagemark\\": "src/"
         }
     },
     "minimum-stability": "stable"

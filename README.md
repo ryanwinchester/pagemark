@@ -1,10 +1,10 @@
-# Postmark
+# Pagemark
 
-[![Version](https://img.shields.io/packagist/v/fungku/postmark.svg?style=flat-square)](https://packagist.org/packages/fungku/postmark)
- [![Total Downloads](https://img.shields.io/packagist/dt/fungku/postmark.svg?style=flat-square)](https://packagist.org/packages/fungku/postmark)
- [![License](https://img.shields.io/packagist/l/fungku/postmark.svg?style=flat-square)](https://packagist.org/packages/fungku/postmark)
- [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/fungku/postmark.svg?style=flat-square)](https://scrutinizer-ci.com/g/fungku/postmark/?branch=master)
- [![Build Status](https://img.shields.io/travis/fungku/postmark.svg?style=flat-square)](https://travis-ci.org/fungku/postmark)
+[![Version](https://img.shields.io/packagist/v/ryanwinchester/pagemark.svg?style=flat-square)](https://packagist.org/packages/ryanwinchester/pagemark)
+ [![Total Downloads](https://img.shields.io/packagist/dt/ryanwinchester/pagemark.svg?style=flat-square)](https://packagist.org/packages/ryanwinchester/pagemark)
+ [![License](https://img.shields.io/packagist/l/ryanwinchester/pagemark.svg?style=flat-square)](https://packagist.org/packages/ryanwinchester/pagemark)
+ [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/ryanwinchester/pagemark.svg?style=flat-square)](https://scrutinizer-ci.com/g/ryanwinchester/pagemark/?branch=master)
+ [![Build Status](https://img.shields.io/travis/ryanwinchester/pagemark.svg?style=flat-square)](https://travis-ci.org/ryanwinchester/pagemark)
 
 
 ## Parse markdown for blogs and wikis
@@ -12,37 +12,37 @@
 There are multiple ways to get the content.
 
 ```php
-use Fungku\Postmark\Postmark;
+use Pagemark\Pagemark;
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
 
-$content = Postmark::parse($basePath, $post);
+$content = Pagemark::parse($basePath, $post);
 ```
 
 ```php
-use Fungku\Postmark\Postmark;
+use Pagemark\Pagemark;
 
-$postmark = Postmark::create();
+$pagemark = Pagemark::create();
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
 
-$content = $postmark->getContent($basePath, $post);
+$content = $pagemark->getContent($basePath, $post);
 ```
 
 ```php
-use Fungku\Postmark\Postmark;
-use Fungku\Postmark\Parser;
+use Pagemark\Pagemark;
+use Pagemark\Parser;
 use Illuminate\Filesystem\Filesystem;
 use Parsedown;
 
-$postmark = new Postmark(new Filesystem, new Parser(new Parsedown));
+$pagemark = new Pagemark(new Filesystem, new Parser(new Parsedown));
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
 
-$content = $postmark->getContent($basePath, $post);
+$content = $pagemark->getContent($basePath, $post);
 ```
 
 ## Example return value
@@ -84,29 +84,29 @@ you need to make your own parser that implements the `Parseable` interface or cr
 that implements `Parseable`.
 
 ```php
-use Fungku\Postmark\Postmark;
+use Pagemark\Pagemark;
 
 $myCustomParser = new CustomParser;
 
-$postmark = Postmark::create($myCustomParser);
+$pagemark = Pagemark::create($myCustomParser);
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
 
-$content = $postmark->getContent($basePath, $post);
+$content = $pagemark->getContent($basePath, $post);
 ```
 
 ```php
-use Fungku\Postmark\Postmark;
-use Fungku\Postmark\Parser;
+use Pagemark\Pagemark;
+use Pagemark\Parser;
 use Illuminate\Filesystem\Filesystem;
 
 $myCustomParser = new CustomParser;
 
-$postmark = new Postmark(new Filesystem, $myCustomParser);
+$pagemark = new Pagemark(new Filesystem, $myCustomParser);
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
 
-$content = $postmark->getContent($basePath, $post);
+$content = $pagemark->getContent($basePath, $post);
 ```

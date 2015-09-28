@@ -7,18 +7,18 @@ return <<<'MARKDOWN'
 There are multiple ways to get the content.
 
 ```php
-use Fungku\Postmark\Postmark;
+use Pagemark\Pagemark;
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
 
-$content = Postmark::parse($basePath, $post);
+$content = Pagemark::parse($basePath, $post);
 ```
 
 ```php
-use Fungku\Postmark\Postmark;
+use Pagemark\Pagemark;
 
-$postmark = Postmark::create();
+$postmark = Pagemark::create();
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
@@ -27,12 +27,12 @@ $content = $postmark->getContent($basePath, $post);
 ```
 
 ```php
-use Fungku\Postmark\Postmark;
-use Fungku\Postmark\Parser;
+use Pagemark\Pagemark;
+use Pagemark\Parser;
 use Illuminate\Filesystem\Filesystem;
 use Parsedown;
 
-$postmark = new Postmark(new Filesystem, new Parser(new Parsedown));
+$postmark = new Pagemark(new Filesystem, new Parser(new Parsedown));
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
@@ -64,11 +64,11 @@ you need to make your own parser that implements the `Parseable` interface or cr
 that implements `Parseable`.
 
 ```php
-use Fungku\Postmark\Postmark;
+use Pagemark\Pagemark;
 
 $myCustomParser = new CustomParser;
 
-$postmark = Postmark::create($myCustomParser);
+$postmark = Pagemark::create($myCustomParser);
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
@@ -77,13 +77,13 @@ $content = $postmark->getContent($basePath, $post);
 ```
 
 ```php
-use Fungku\Postmark\Postmark;
-use Fungku\Postmark\Parser;
+use Pagemark\Pagemark;
+use Pagemark\Parser;
 use Illuminate\Filesystem\Filesystem;
 
 $myCustomParser = new CustomParser;
 
-$postmark = new Postmark(new Filesystem, $myCustomParser);
+$postmark = new Pagemark(new Filesystem, $myCustomParser);
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';

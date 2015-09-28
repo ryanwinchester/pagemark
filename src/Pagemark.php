@@ -1,9 +1,11 @@
-<?php namespace Fungku\Postmark;
+<?php
 
-use Fungku\Postmark\Contracts\Parseable;
+namespace Pagemark;
+
 use Illuminate\Filesystem\Filesystem;
+use Pagemark\Contracts\Parseable;
 
-class Postmark
+class Pagemark
 {
     /**
      * @var Filesystem

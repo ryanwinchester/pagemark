@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\Fungku\Postmark;
+namespace spec\Pagemark;
 
-use Fungku\Postmark\Parser;
 use Illuminate\Filesystem\Filesystem;
+use Pagemark\Parser;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class PostmarkSpec extends ObjectBehavior
+class PagemarkSpec extends ObjectBehavior
 {
     private $basePath = '/path/to/wiki';
     private $post = 'My/Post/File';
@@ -30,7 +30,7 @@ class PostmarkSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Fungku\Postmark\Postmark');
+        $this->shouldHaveType('Pagemark\Pagemark');
     }
 
     function it_gets_content_for_file(Filesystem $filesystem, Parser $parser)

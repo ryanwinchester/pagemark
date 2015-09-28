@@ -3,26 +3,26 @@
 return <<<'HTML'
 <h2>Parse markdown for blogs and wikis</h2>
 <p>There are multiple ways to get the content.</p>
-<pre><code class="language-php">use Fungku\Postmark\Postmark;
+<pre><code class="language-php">use Pagemark\Pagemark;
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
 
-$content = Postmark::parse($basePath, $post);</code></pre>
-<pre><code class="language-php">use Fungku\Postmark\Postmark;
+$content = Pagemark::parse($basePath, $post);</code></pre>
+<pre><code class="language-php">use Pagemark\Pagemark;
 
-$postmark = Postmark::create();
+$postmark = Pagemark::create();
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
 
 $content = $postmark-&gt;getContent($basePath, $post);</code></pre>
-<pre><code class="language-php">use Fungku\Postmark\Postmark;
-use Fungku\Postmark\Parser;
+<pre><code class="language-php">use Pagemark\Pagemark;
+use Pagemark\Parser;
 use Illuminate\Filesystem\Filesystem;
 use Parsedown;
 
-$postmark = new Postmark(new Filesystem, new Parser(new Parsedown));
+$postmark = new Pagemark(new Filesystem, new Parser(new Parsedown));
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
@@ -48,23 +48,23 @@ $content = $postmark-&gt;getContent($basePath, $post);</code></pre>
 <p>By default the markdown parser used is <a href="https://github.com/erusev/parsedown">erusev/parsedown</a>. To use a different one,
 you need to make your own parser that implements the <code>Parseable</code> interface or create an adapter for a different library
 that implements <code>Parseable</code>.</p>
-<pre><code class="language-php">use Fungku\Postmark\Postmark;
+<pre><code class="language-php">use Pagemark\Pagemark;
 
 $myCustomParser = new CustomParser;
 
-$postmark = Postmark::create($myCustomParser);
+$postmark = Pagemark::create($myCustomParser);
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
 
 $content = $postmark-&gt;getContent($basePath, $post);</code></pre>
-<pre><code class="language-php">use Fungku\Postmark\Postmark;
-use Fungku\Postmark\Parser;
+<pre><code class="language-php">use Pagemark\Pagemark;
+use Pagemark\Parser;
 use Illuminate\Filesystem\Filesystem;
 
 $myCustomParser = new CustomParser;
 
-$postmark = new Postmark(new Filesystem, $myCustomParser);
+$postmark = new Pagemark(new Filesystem, $myCustomParser);
 
 $basePath = '/my/path/to/wiki';
 $post = 'Category/Subcategory/My-Post';
