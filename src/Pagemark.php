@@ -3,6 +3,7 @@
 namespace Pagemark;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Collection;
 use Pagemark\Contracts\Parseable;
 
 class Pagemark
@@ -11,6 +12,7 @@ class Pagemark
      * @var Filesystem
      */
     private $filesystem;
+
     /**
      * @var Parseable
      */
@@ -47,7 +49,7 @@ class Pagemark
      *
      * @param string $basePath
      * @param string $post
-     * @return mixed
+     * @return Page
      */
     public static function parse($basePath, $post)
     {
@@ -63,7 +65,7 @@ class Pagemark
      *
      * @param string $basePath
      * @param string $post
-     * @return array
+     * @return Page
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function getContent($basePath, $post)
@@ -114,12 +116,12 @@ class Pagemark
             }
         }
 
-        return [
-            'title'       => $title,
-            'breadcrumbs' => $breadcrumbs,
-            'index'       => $index,
-            'post'        => $post,
-        ];
+        return new Page(
+            $title,
+            $breadcrumbs,
+            new Collection($index),
+            $post
+        );
     }
 
     /**
@@ -139,7 +141,7 @@ class Pagemark
      * Make an array of breadcrumb items.
      *
      * @param string $post
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     private function makeBreadcrumbsFromPost($post)
     {
@@ -155,7 +157,7 @@ class Pagemark
             ];
         }
 
-        return $breadcrumbs;
+        return new Collection($breadcrumbs);
     }
 
     /**
