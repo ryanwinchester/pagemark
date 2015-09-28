@@ -7,7 +7,7 @@
  [![Build Status](https://img.shields.io/travis/fungku/postmark.svg?style=flat-square)](https://travis-ci.org/fungku/postmark)
 
 
-## Parse markdown for blogs and wikis
+## Parse markdown pages for blogs and wikis
 
 There are multiple ways to get the content.
 
