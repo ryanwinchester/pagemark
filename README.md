@@ -1,10 +1,10 @@
 # Pagemark
 
-[![Version](https://img.shields.io/packagist/v/ryanwinchester/pagemark.svg?style=flat-square)](https://packagist.org/packages/ryanwinchester/pagemark)
- [![Total Downloads](https://img.shields.io/packagist/dt/ryanwinchester/pagemark.svg?style=flat-square)](https://packagist.org/packages/ryanwinchester/pagemark)
- [![License](https://img.shields.io/packagist/l/ryanwinchester/pagemark.svg?style=flat-square)](https://packagist.org/packages/ryanwinchester/pagemark)
- [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/ryanwinchester/pagemark.svg?style=flat-square)](https://scrutinizer-ci.com/g/ryanwinchester/pagemark/?branch=master)
- [![Build Status](https://img.shields.io/travis/ryanwinchester/pagemark.svg?style=flat-square)](https://travis-ci.org/ryanwinchester/pagemark)
+[![Version](https://img.shields.io/packagist/v/fungku/postmark.svg?style=flat-square)](https://packagist.org/packages/fungku/postmark)
+ [![Total Downloads](https://img.shields.io/packagist/dt/fungku/postmark.svg?style=flat-square)](https://packagist.org/packages/fungku/postmark)
+ [![License](https://img.shields.io/packagist/l/fungku/postmark.svg?style=flat-square)](https://packagist.org/packages/fungku/postmark)
+ [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/fungku/postmark.svg?style=flat-square)](https://scrutinizer-ci.com/g/fungku/postmark/?branch=master)
+ [![Build Status](https://img.shields.io/travis/fungku/postmark.svg?style=flat-square)](https://travis-ci.org/fungku/postmark)
 
 
 ## Parse markdown for blogs and wikis

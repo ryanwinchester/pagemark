@@ -16,9 +16,6 @@
     "require-dev": {
         "phpspec/phpspec": "~2.1"
     },
-    "replace": {
-        "fungku/postmark": "self.version"
-    },
     "autoload": {
         "psr-4": {
             "Pagemark\\": "src/"
