@@ -29,7 +29,7 @@ class Pagemark
     }
 
     /**
-     * Return a new postmark instance.
+     * Return a new pagemark instance.
      *
      * @param Parseable $parser
      * @return static
@@ -51,9 +51,9 @@ class Pagemark
      */
     public static function parse($basePath, $post)
     {
-        $postmark = static::create();
+        $pagemark = static::create();
 
-        return $postmark->getContent($basePath, $post);
+        return $pagemark->getContent($basePath, $post);
     }
 
     /**
@@ -95,7 +95,7 @@ class Pagemark
                 $paths = explode('/', $item);
                 $name = array_pop($paths);
                 $index['subcategories'][$i] = [
-                    'href' => $item,
+                    'href' => str_replace('//', '/', $item),
                     'name' => $this->deslugify($name),
                 ];
             }
