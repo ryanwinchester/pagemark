@@ -71,7 +71,7 @@ class Pagemark
         $breadcrumbs = $this->makeBreadcrumbsFromPost($post);
         $title = $this->makeTitleFromBreadcrumbs($breadcrumbs);
 
-        $postPath = $basePath .'/'. $post;
+        $postPath = $basePath .($post? '/'. $post : '');
         $isDir = false;
         $index = [];
 
@@ -95,7 +95,7 @@ class Pagemark
                 $paths = explode('/', $item);
                 $name = array_pop($paths);
                 $index['subcategories'][$i] = [
-                    'href' => str_replace('//', '/', $item),
+                    'href' => $item,
                     'name' => $this->deslugify($name),
                 ];
             }
@@ -105,7 +105,7 @@ class Pagemark
                 $paths = explode('/', $item);
                 $name = array_pop($paths);
                 $index['files'][$i] = [
-                    'href' => str_replace('//', '/', $item),
+                    'href' => $item,
                     'name' => $this->deslugify($name),
                 ];
                 if ($index['files'][$i]['name'] === 'index') {
